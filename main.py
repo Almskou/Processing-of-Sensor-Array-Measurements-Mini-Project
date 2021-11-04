@@ -91,8 +91,8 @@ if __name__ == '__main__':
     Pm_Capon = fun.capon(RFB, Res, dat, idx_subarray[1],
                          idx_subarray[0], tau_search)
 
-    print("Barlett")
-    Pm_Barlett = fun.barlett(R, Res, dat, idx_array[1],
+    print("Bartlett")
+    Pm_Bartlett = fun.barlett(R, Res, dat, idx_array[1],
                              idx_array[0], tau_search)
 
     print("MUSIC")
@@ -121,11 +121,11 @@ if __name__ == '__main__':
         plt.xlabel("Theta [degrees]")
 
         plt.figure()
-        plt.title(f"Barlett- Sweep - res: {Res} - SNRdb: {SNRdb}")
+        plt.title(f"Bartlett- Sweep - res: {Res} - SNRdb: {SNRdb}")
         plt.scatter(AoA, TDoA, color='r', marker='x')
-        pm_max = np.max(10*np.log10(Pm_Barlett))
+        pm_max = np.max(10*np.log10(Pm_Bartlett))
         # pm_max = 20
-        plt.imshow(10*np.log10(Pm_Barlett), vmin=pm_max-40, vmax=pm_max,
+        plt.imshow(10*np.log10(Pm_Bartlett), vmin=pm_max-40, vmax=pm_max,
                    extent=[0, 360,
                            tau_search[0], tau_search[1]],
                    aspect="auto", origin="lower")
@@ -171,7 +171,7 @@ if plot == 3:
     from matplotlib import cm
     x = np.linspace(-180, 180, Res[0])
     y = np.linspace(tau_search[0], tau_search[1], Res[1], endpoint=True)
-    z = 10*np.log10(Pm_Barlett)
+    z = 10*np.log10(Pm_Bartlett)
 
     x, y = np.meshgrid(x, y)
 

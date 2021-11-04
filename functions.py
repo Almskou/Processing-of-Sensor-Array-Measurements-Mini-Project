@@ -123,7 +123,7 @@ def MUSIC(R, Res, dat, idx_tau, idx_array, tau_search, M=None):
     lambda_ = 3e8/f0
 
     Theta = np.linspace(0, 2*np.pi, Res[0])
-    Pm = np.zeros([Res[0], len(Tau)])
+    Pm = np.zeros([Res[1], Res[0]])
 
     # ------ Step 3 - Form U ------
     E, U = np.linalg.eig(R)
@@ -137,9 +137,9 @@ def MUSIC(R, Res, dat, idx_tau, idx_array, tau_search, M=None):
 
     # ------ Step 4 - Calculate Freq. estimate ------
     # Do the caluclations
-    for i in range(len(Theta)):
+    for i in range(Res[0]):
         print(i)
-        for j in range(len(Tau)):
+        for j in range(Res[1]):
             # Calculate for the different steering matrix
             As = delay_respons_vector(Theta[i], Tau[j], r, f, lambda_)
 
@@ -153,7 +153,7 @@ def MUSIC(R, Res, dat, idx_tau, idx_array, tau_search, M=None):
     return Pm
 
 
-def barlett(R, Res, dat, idx_tau, idx_array, tau_search):
+def bartlett(R, Res, dat, idx_tau, idx_array, tau_search):
     # Parameters
     Tau = np.linspace(tau_search[0], tau_search[1], Res[1], endpoint=True)
     f = dat['f'][idx_tau]
@@ -163,12 +163,12 @@ def barlett(R, Res, dat, idx_tau, idx_array, tau_search):
     lambda_ = 3e8/f0
 
     Theta = np.linspace(0, 2*np.pi, Res[0])
-    Pm = np.zeros([Res[0], Res[1]])
+    Pm = np.zeros([Res[1], Res[0]])
 
     # Do the caluclations
-    for i in range(len(Theta)):
+    for i in range(Res[0]):
         print(i)
-        for j in range(len(Tau)):
+        for j in range(Res[1]):
             As = np.zeros([len(f)*np.size(r, axis=1), 1], dtype=np.complex)
             Ash = np.zeros([1, len(f)*np.size(r, axis=1)], dtype=np.complex)
 
@@ -194,12 +194,12 @@ def capon(R, Res, dat, idx_tau, idx_array, tau_search):
     lambda_ = 3e8/f0
 
     Theta = np.linspace(0, 2*np.pi, Res[0])
-    Pm = np.zeros([Res[0], len(Tau)])
+    Pm = np.zeros([Res[1], Res[0]])
 
     # Do the caluclations
-    for i in range(len(Theta)):
+    for i in range(Res[0]):
         print(i)
-        for j in range(len(Tau)):
+        for j in range(Res[1]):
             # Calculate for the different steering matrix
             As = delay_respons_vector(Theta[i], Tau[j], r, f, lambda_)
 
