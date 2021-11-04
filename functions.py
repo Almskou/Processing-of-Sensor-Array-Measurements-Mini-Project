@@ -18,7 +18,7 @@ def delay_respons_vector(theta, tau, r, f, lambda_):
     # Angle
     e = np.matrix([np.cos(theta), np.sin(theta)])
 
-    a = (np.exp(-2j*np.pi*(1/lambda_) * e@r)).T
+    a = (np.exp(2j*np.pi*(1/lambda_) * e@r)).T
 
     # Delay
     b = (np.exp(-2j*np.pi*f*tau))

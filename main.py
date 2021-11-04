@@ -100,8 +100,9 @@ if __name__ == '__main__':
                          idx_subarray[0], tau_search, M=M)
 
     # %% Plot
-    Theta = np.linspace(0, np.pi, Res[0])
     AoA = (dat['smc_param'][0][0][1])*180/np.pi
+    AoA[AoA < 0] = AoA[AoA < 0] + 360
+
     TDoA = (dat['smc_param'][0][0][2])*(1/3e8) + np.abs(dat['tau'][0])
 
     if plot == 1:
@@ -112,7 +113,7 @@ if __name__ == '__main__':
         pm_max = np.max(10*np.log10(Pm_Capon))
         # pm_max = 20
         plt.imshow(10*np.log10(Pm_Capon), vmin=pm_max-40, vmax=pm_max,
-                   extent=[-180, 180,
+                   extent=[0, 360,
                            tau_search[0], tau_search[1]],
                    aspect="auto", origin="lower")
         plt.colorbar()
@@ -125,7 +126,7 @@ if __name__ == '__main__':
         pm_max = np.max(10*np.log10(Pm_Barlett))
         # pm_max = 20
         plt.imshow(10*np.log10(Pm_Barlett), vmin=pm_max-40, vmax=pm_max,
-                   extent=[-180, 180,
+                   extent=[0, 360,
                            tau_search[0], tau_search[1]],
                    aspect="auto", origin="lower")
         plt.colorbar()
@@ -138,7 +139,7 @@ if __name__ == '__main__':
         pm_max = np.max(10*np.log10(Pm_MUSIC))
         # pm_max = 20
         plt.imshow(10*np.log10(Pm_MUSIC), vmin=pm_max-40, vmax=pm_max,
-                   extent=[-180, 180,
+                   extent=[0, 360,
                            tau_search[0], tau_search[1]],
                    aspect="auto", origin="lower")
         plt.colorbar()
