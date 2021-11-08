@@ -92,8 +92,8 @@ if __name__ == '__main__':
                          idx_subarray[0], tau_search)
 
     print("Bartlett")
-    Pm_Bartlett = fun.barlett(R, Res, dat, idx_array[1],
-                             idx_array[0], tau_search)
+    Pm_Bartlett = fun.bartlett(R, Res, dat, idx_array[1],
+                               idx_array[0], tau_search)
 
     print("MUSIC")
     Pm_MUSIC = fun.MUSIC(RFB, Res, dat, idx_subarray[1],
